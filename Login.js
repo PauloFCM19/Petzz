@@ -10,7 +10,7 @@ const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const handleLogin = () => {
     if (username === '' && password === '') {
-        navigation.navigate('Cadastro'); // Navigate to Cadastro screen
+        navigation.navigate('CadastroPet'); // Navigate to Cadastro screen
         //LIMPANDO OS CAMPOS DE ENTRADAS DE DADOS
         setUsername('');
         setPassword('');

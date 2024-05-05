@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { initDatabase } from './db';
 import Login from './Login';
 import Cadastro from './Cadastro';
+import CadastroPet from './CadatroPet';
+
 
 
 const Stack = createStackNavigator();
@@ -20,7 +22,7 @@ return (
     <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
-       
+        <Stack.Screen name="CadastroPet" component={CadastroPet}/>
     </Stack.Navigator>
 </NavigationContainer>
 );

@@ -22,7 +22,7 @@ const Cadastro = ({ navigation }) => {
     const torcid = await getNextTorcedorId(db);
     // Fornecer os valores usermat e username para insertTorcedor
     await insertTorcedor(db, torcid, useremail, username, userpassword);
-        setUsermail('');
+        setUseremail('');
         setUsername('');
         setUserpassword('');
     alert('Registro gravado com sucesso!');
