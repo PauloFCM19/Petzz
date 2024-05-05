@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { initDatabase } from './db';
 import Login from './Login';
 import Cadastro from './Cadastro';
+
+
 const Stack = createStackNavigator();
 const App = () => {
 useEffect(() => {
@@ -15,10 +17,11 @@ init();
 }, []);
 return (
 <NavigationContainer>
-<Stack.Navigator initialRouteName="Login">
-<Stack.Screen name="Login" component={Login} />
-<Stack.Screen name="Cadastro" component={Cadastro} />
-</Stack.Navigator>
+    <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Cadastro" component={Cadastro} />
+       
+    </Stack.Navigator>
 </NavigationContainer>
 );
 };

@@ -1,112 +1,179 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, Image } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, Image, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createTables, insertTorcedor, initDatabase, getDbConnection, getNextTorcedorId } from './db';
-const Stack = createStackNavigator();
-const Cadastro = ({ navigation }) => {
-const [usermat, setUsermat] = useState('');
-const [username, setUsername] = useState('');
-const handleGravar = async () => {
-console.log('Entrou na função handleGravar');
-// Verifique os valores de usermat e username
-console.log('usermat:', usermat);
-console.log('username:', username);
-try {
-await initDatabase();
-const db = await getDbConnection();
-const torcid = await getNextTorcedorId(db);
-// Fornecer os valores usermat e username para insertTorcedor
-await insertTorcedor(db, torcid, usermat, username);
-setUsermat('');
-setUsername('');
-alert('Registro gravado com sucesso!');
-} catch (error) {
-console.error('Erro ao gravar registro:', error);
-alert('Erro ao gravar registro. Verifique o console para mais informações.');
-}
-};
-return (
-<View style={[styles.container, { backgroundColor: 'lightblue' }]}>
 
-    <Text style={[styles.label1, { marginBottom: 20, textAlign: 'center' }]}>
-        Crie sua conta
-    </Text>
-    <View style={styles.inputContainer1}>
-        <View style={styles.inputGroup}>
+const Stack = createStackNavigator();
+
+const Cadastro = ({ navigation }) => {
+    const [username, setUsername] = useState('');
+    const [useremail, setUseremail] = useState('');
+    const [userpassword, setUserpassword] = useState('');
+    const handleGravar = async () => {
+    console.log('Entrou na função handleGravar');
+    // Verifique os valores de usermat e username
+    console.log('useremail:', useremail);
+    console.log('username:', username);
+    console.log('userpassword', userpassword)
+    try {
+    await initDatabase();
+    const db = await getDbConnection();
+    const torcid = await getNextTorcedorId(db);
+    // Fornecer os valores usermat e username para insertTorcedor
+    await insertTorcedor(db, torcid, useremail, username, userpassword);
+        setUsermail('');
+        setUsername('');
+        setUserpassword('');
+    alert('Registro gravado com sucesso!');
+    } catch (error) {
+    console.error('Erro ao gravar registro:', error);
+    alert('Erro ao gravar registro. Verifique o console para mais informações.');
+    }
+};
+
+
+
+
+return (
+<View style={[styles.mainContainer]}>
+    <View style={styles.formContainer}>
+        <Text style={styles.labelTitulo }>
+            <h1>
+                Cadastre-se
+            </h1>
+        </Text>
+        <View style={styles.loginContainer}>
+        <Text style={styles.labelNome}>Nome</Text>
+                <TextInput
+                style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
+                value={username}
+                onChangeText={setUsername} 
+                placeholder='Digite seu nome'
+
+         />
+
+        {/* <View style={styles.inputGroup}>
             <Text style={styles.label2}>Edit : </Text>
             <TextInput
                 style={[styles.input, { width: 100 }]}
                 value={usermat}
                 onChangeText={setUsermat}
             />
-        </View>
+        </View> */}
+        <Text style={styles.labelNome}>Email</Text>
+                <TextInput
+                style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
+                value={useremail}
+                onChangeText={setUseremail} 
+                placeholder='seuemail@email.com'
 
-        <View style={styles.inputGroup}>
-            <Text style={styles.label2}> Edit : </Text>
-            <TextInput
-            style={[styles.input, { width: 400 }]}
-            value={username}
-            onChangeText={setUsername}
-            />
-        </View>
-    </View>
-         <View style={styles.ButtonContainer}>
-            <Button title="Gravar" onPress={handleGravar} />
+        />
+        <Text style={styles.labelNome}>Senha</Text>
+                <TextInput
+                style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
+                value={userpassword}
+                onChangeText={setUserpassword} 
+                placeholder='Digite Sua Senha'
+
+        />
+         <View style = {styles.ButtonContainer2}>
+            <Pressable style={styles.botao} onPress={handleGravar}>
+                <Text style={ styles.botaoText}>
+                    CADASTRAR
+                </Text>
+            </Pressable>
          </View>
+       
+        </View >
+   
+        
+    </View>
+    
 </View>
+
+
 );
+
+
 };
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-padding: 20,
+mainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: 'rgb(0, 254, 129)',
+    height: '100%', 
+    padding: '20px'
 },
-label1: {
-color: 'blue',
-fontSize: 20,
-fontFamily: 'Arial',
-fontWeight: 'bold',
-marginBottom: 5,
+formContainer:{
+    margin:'20px',
+    padding: '50px',
+    backgroundColor: 'rgb(40, 36, 65)',
+    borderRadius: '15px',
+     
+    
+},
+labelTitulo: {
+    color: 'rgb(3,245,133))',
+    width: '250px',
+    textAlign: 'center'
+},
+loginContainer:{
+    
+    padding: '10px',
+    
+},
+labelNome: {
+    fontSize: '16px',
+    fontWeight: '700',
+    paddingLeft: '10px',
+    color: 'rgb(3,245,133))',
+    marginBottom: '10px'
+},
+inputUser:{
+    width: '100%', 
+    height: '40px',
+    textAlign: 'left', 
+    padding: '10px',
+    borderRadius: '5px',
+    backgroundColor: 'rgb(85, 70, 108)',
+    margin: '5px',
+    
+    
+
+},
+ButtonContainer2:{
+    marginTop: '20px'
+},
+botao:{
+    backgroundColor: '#00fe99',
+    alignItems: 'center',
+    borderRadius: '10px'
+    
+    
+},
+botaoText:{
+    fontSize: '16px',
+    fontWeight:'bold',
+    color:'rgb(85, 70, 108)',
+    padding: '10px'
 },
 label2: {
-color: 'blue',
-fontSize: 18,
-fontFamily: 'Arial',
-fontWeight: 'bold',
-marginBottom: 5,
+
 },
 inputContainer1: {
-flexDirection: 'row',
-alignItems: 'center',
-marginBottom: 10,
+
 },
 inputGroup: {
-flexDirection: 'row',
-alignItems: 'center',
-marginBottom: 10,
+
 },
 input: {
-flex: 1,
-padding: 10,
-fontSize: 18,
-fontWeight: 'bold',
-borderWidth: 1,
-borderColor: '#ccc',
-backgroundColor: 'white',
-textAlign: 'left',
-marginBottom: 10,
+
 },
-imagem: {
-alignSelf: 'stretch',
-height: 70,
-marginTop: 5,
-},
+
 ButtonContainer: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-marginTop: 600,
+
 },
 });
 export default Cadastro;
