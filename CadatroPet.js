@@ -29,7 +29,7 @@ const CadastroPet = ({navigation }) => {
                         style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
                         value={username}
                         onChangeText={setUsername} 
-                        placeholder='Digite seu nome'
+                        placeholder='Digite o Nome o do Pet'
         
                  />
         
@@ -46,7 +46,7 @@ const CadastroPet = ({navigation }) => {
                         style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
                         value={useremail}
                         onChangeText={setUseremail} 
-                        placeholder='seuemail@email.com'
+                        placeholder='Informe a Raça do pet'
         
                 />
                 <Text style={styles.labelNome}>Gênero</Text>
@@ -54,7 +54,7 @@ const CadastroPet = ({navigation }) => {
                         style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
                         value={userpassword}
                         onChangeText={setUserpassword} 
-                        placeholder='Digite Sua Senha'
+                        placeholder='Informe o Gênero do pet'
         
                 />
                  <View style = {styles.ButtonContainer2}>

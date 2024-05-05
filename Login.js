@@ -35,7 +35,7 @@ return (
     <View style={styles.formContainer}>
         <Text style={[styles.labelTitulo, { marginBottom: 20, textAlign: 'center' }]}>
             <h1>
-                Wellcome to AbracePetz
+                Bem-vindo à AbracePetz
             </h1>
         </Text>
         <View style={styles.loginContainer}>
