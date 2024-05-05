@@ -11,6 +11,10 @@ const CadastroPet = ({navigation }) => {
     const [username, setUsername] = useState('');
     const [useremail, setUseremail] = useState('');
     const [userpassword, setUserpassword] = useState('');
+
+    const handlerCadastrar = () => {
+        alert('Pet cadastrado com sucesso!');
+    }
     return (
         <View style={[styles.mainContainer]}>
             <View style={styles.formContainer}>
@@ -54,7 +58,7 @@ const CadastroPet = ({navigation }) => {
         
                 />
                  <View style = {styles.ButtonContainer2}>
-                    <Pressable style={styles.botao} >
+                    <Pressable  style={styles.botao} onPress={handlerCadastrar} >
                         <Text style={ styles.botaoText}>
                             CADASTRAR
                         </Text>

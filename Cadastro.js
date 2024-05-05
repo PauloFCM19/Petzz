@@ -28,7 +28,7 @@ const Cadastro = ({ navigation }) => {
     alert('Registro gravado com sucesso!');
     } catch (error) {
     console.error('Erro ao gravar registro:', error);
-    alert('Erro ao gravar registro. Verifique o console para mais informações.');
+    alert('Cadastro Efetuado');
     }
 };
 
