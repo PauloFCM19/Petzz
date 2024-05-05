@@ -29,6 +29,9 @@ const Cadastro = ({ navigation }) => {
     } catch (error) {
     console.error('Erro ao gravar registro:', error);
     alert('Cadastro Efetuado');
+    setUseremail('');
+    setUsername('');
+    setUserpassword('');
     }
 };
 

@@ -14,6 +14,9 @@ const CadastroPet = ({navigation }) => {
 
     const handlerCadastrar = () => {
         alert('Pet cadastrado com sucesso!');
+        setUseremail('');
+        setUsername('');
+        setUserpassword('');
     }
     return (
         <View style={[styles.mainContainer]}>
