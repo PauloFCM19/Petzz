@@ -1,5 +1,5 @@
 import { enablePromise, openDatabase } from 'expo-sqlite';
-// Defina a constante DATABASE_NAME
+
 const DATABASE_NAME = 'mydb.db';
 export async function getDbConnection() {
 const db = await openDatabase({ name: DATABASE_NAME, location: 'default'});
@@ -11,17 +11,16 @@ const db = await getDbConnection();
 console.log('Banco de dados inicializado');
 await createTables(db);
 console.log('Tabela "mydb" criada');
-// Não feche a conexão aqui, mantenha-a aberta
-// db.close();
 }
 export async function createTables(db) {
 return new Promise((resolve, reject) => {
 db.transaction((tx) => {
 tx.executeSql(
 'CREATE TABLE IF NOT EXISTS mydb (' +
-'torcid INTEGER PRIMARY KEY, ' +
-'torcmat VARCHAR(256) NOT NULL, ' +
-'torcnome TEXT NOT NULL' +
+'userid INTEGER PRIMARY KEY, ' +
+'username VARCHAR(256) NOT NULL, ' +
+'useremail TEXT NOT NULL' +
+'userpassword INTEGER PRIMARY KEY, ' +
 ');',
 [],
 () => {
@@ -34,14 +33,14 @@ reject(error);
 });
 });
 }
-export async function getNextTorcedorId(db) {
+export async function getNextUserId(db) {
 return new Promise((resolve, reject) => {
 db.transaction((tx) => {
 tx.executeSql(
-'SELECT MAX(torcid) FROM mydb;',
+'SELECT MAX(user) FROM mydb;',
 [],
 (_, result) => {
-const maxId = result.rows.item(0)['MAX(torcid)'];
+const maxId = result.rows.item(0)['MAX(user)'];
 resolve(maxId !== null ? maxId + 1 : 1);
 },
 (_, error) => {
@@ -52,12 +51,12 @@ resolve(1); // Retorne 1 em caso de erro
 });
 });
 }
-export async function insertTorcedor(db, torcid, torcmat, torcnome) {
+export async function insertTorcedor(db, username, useremail, userpassword) {
 return new Promise((resolve, reject) => {
 db.transaction((tx) => {
 tx.executeSql(
-'INSERT INTO mydb (torcid, torcmat, torcnome) VALUES (?, ?, ?);',
-[torcid, torcmat, torcnome],
+'INSERT INTO mydb (username, useremail, userpassword) VALUES (?, ?, ?);',
+[username, useremail, userpassword],
 (_, result) => {
 resolve(result);
 },
@@ -70,7 +69,21 @@ reject(error);
 });
 }
 export async function getTorcedor(db) {
-const results = await db.executeSql('SELECT torcid, torcmat, torcnome FROM mydb');
+const results = await db.executeSql('SELECT username, useremail, userpassword FROM mydb');
 const mydb = results[0].rows.map(row => row);
 return mydb;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,9 +9,8 @@ const Login = ({ navigation }) => {
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const handleLogin = () => {
-    if (username === '' && password === '') {
-        navigation.navigate('CadastroPet'); // Navigate to Cadastro screen
-        //LIMPANDO OS CAMPOS DE ENTRADAS DE DADOS
+    if (username === 'admin' && password === '1234') {
+        navigation.navigate('DashBoard'); 
         setUsername('');
         setPassword('');
     } else {

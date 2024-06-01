@@ -1,69 +1,54 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, Image, Pressable } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createTables, insertTorcedor, initDatabase, getDbConnection, getNextTorcedorId } from './db';
+import { createTables,  initDatabase, getDbConnection, getNextPetId } from './db';
 
 const stack = createStackNavigator();
 
 
-const CadastroPet = ({navigation }) => {
-    const [username, setUsername] = useState('');
-    const [useremail, setUseremail] = useState('');
-    const [userpassword, setUserpassword] = useState('');
+const DashBoardTwo = ({navigation }) => {
+   
 
     const handlerCadastrar = () => {
-        alert('Pet cadastrado com sucesso!');
-        setUseremail('');
-        setUsername('');
-        setUserpassword('');
+        navigation.navigate('CadastroPet');
+    }
+    const handlerBuscar = () => {
+        navigation.navigate('BuscarPet.');
+    }
+    const handlerDeletar = () => {
+        navigation.navigate('DeletarPet');
     }
     return (
         <View style={[styles.mainContainer]}>
             <View style={styles.formContainer}>
                 <Text style={styles.labelTitulo }>
                     <h1>
-                        Cadastre o Pet
+                        Seja bem vindo a AbracePetz
                     </h1>
+                    <h2>
+                        O que gostaria fazer?
+                    </h2>
                 </Text>
                 <View style={styles.loginContainer}>
-                <Text style={styles.labelNome}>Nome</Text>
-                        <TextInput
-                        style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
-                        value={username}
-                        onChangeText={setUsername} 
-                        placeholder='Digite o Nome o do Pet'
-        
-                 />
-        
-                {/* <View style={styles.inputGroup}>
-                    <Text style={styles.label2}>Edit : </Text>
-                    <TextInput
-                        style={[styles.input, { width: 100 }]}
-                        value={usermat}
-                        onChangeText={setUsermat}
-                    />
-                </View> */}
-                <Text style={styles.labelNome}>Raça</Text>
-                        <TextInput
-                        style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
-                        value={useremail}
-                        onChangeText={setUseremail} 
-                        placeholder='Informe a Raça do pet'
-        
-                />
-                <Text style={styles.labelNome}>Gênero</Text>
-                        <TextInput
-                        style={[styles.inputUser]} // AJUSTE DO TAMANHO DA LARGURA DO TEXTINPUT
-                        value={userpassword}
-                        onChangeText={setUserpassword} 
-                        placeholder='Informe o Gênero do pet'
-        
-                />
+                
                  <View style = {styles.ButtonContainer2}>
                     <Pressable  style={styles.botao} onPress={handlerCadastrar} >
                         <Text style={ styles.botaoText}>
-                            CADASTRAR
+                            Cadastrar PET
+                        </Text>
+                    </Pressable>
+                 </View>
+                 <View style = {styles.ButtonContainer2}>
+                    <Pressable  style={styles.botao} onPress={handlerBuscar} >
+                        <Text style={ styles.botaoText}>
+                            Buscar PET
+                        </Text>
+                    </Pressable>
+                 </View>
+                 <View style = {styles.ButtonContainer2}>
+                    <Pressable  style={styles.botao} onPress={handlerDeletar} >
+                        <Text style={ styles.botaoText}>
+                            Deletar PET
                         </Text>
                     </Pressable>
                  </View>
@@ -88,13 +73,16 @@ const CadastroPet = ({navigation }) => {
             backgroundColor: 'rgb(0, 254, 129)',
             height: '100%', 
             padding: '20px'
+            
         },
         formContainer:{
             margin:'20px',
             padding: '50px',
             backgroundColor: 'rgb(40, 36, 65)',
             borderRadius: '15px',
-             
+            width: '420px',
+            height:'500px',
+            alignItems: 'center'
             
         },
         labelTitulo: {
@@ -141,24 +129,15 @@ const CadastroPet = ({navigation }) => {
             fontWeight:'bold',
             color:'rgb(85, 70, 108)',
             padding: '10px'
-        },
-        label2: {
+        }
         
-        },
-        inputContainer1: {
-        
-        },
-        inputGroup: {
-        
-        },
-        input: {
-        
-        },
-        
-        ButtonContainer: {
-        
-        },
+       
         });
 
 
-export default CadastroPet;
+export default DashBoardTwo;
+
+
+
+
+

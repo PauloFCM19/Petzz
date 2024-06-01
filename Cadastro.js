@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, Image, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createTables, insertTorcedor, initDatabase, getDbConnection, getNextTorcedorId } from './db';
+import { createTables,  initDatabase, getDbConnection, getNexUserId } from './db';
 
 const Stack = createStackNavigator();
 
@@ -12,29 +12,34 @@ const Cadastro = ({ navigation }) => {
     const [userpassword, setUserpassword] = useState('');
     const handleGravar = async () => {
     console.log('Entrou na função handleGravar');
-    // Verifique os valores de usermat e username
+   
     console.log('useremail:', useremail);
     console.log('username:', username);
     console.log('userpassword', userpassword)
     try {
     await initDatabase();
     const db = await getDbConnection();
-    const torcid = await getNextTorcedorId(db);
-    // Fornecer os valores usermat e username para insertTorcedor
-    await insertTorcedor(db, torcid, useremail, username, userpassword);
+    const user = await getNextUserId(db);
+    
+    await insertUser(db, user, useremail, username, userpassword);
         setUseremail('');
         setUsername('');
         setUserpassword('');
-    alert('Registro gravado com sucesso!');
+    alert('Usuario inserido com sucesso!');
     } catch (error) {
     console.error('Erro ao gravar registro:', error);
-    alert('Cadastro Efetuado');
+    alert('Usuario cadastrado com sucesso!');
     setUseremail('');
     setUsername('');
     setUserpassword('');
     }
 };
 
+
+
+
+
+navigation
 
 
 
@@ -114,6 +119,8 @@ formContainer:{
     padding: '50px',
     backgroundColor: 'rgb(40, 36, 65)',
     borderRadius: '15px',
+    width: '420px',
+            height:'500px',
      
     
 },
@@ -161,22 +168,9 @@ botaoText:{
     fontWeight:'bold',
     color:'rgb(85, 70, 108)',
     padding: '10px'
-},
-label2: {
-
-},
-inputContainer1: {
-
-},
-inputGroup: {
-
-},
-input: {
-
-},
-
-ButtonContainer: {
-
-},
+}
 });
 export default Cadastro;
+
+
+
